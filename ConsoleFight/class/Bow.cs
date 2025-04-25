@@ -6,16 +6,6 @@ using System.Threading.Tasks;
 
 namespace ConsoleFight
 {
-    abstract class Weapon : Item 
-    {
-        public float Damage;
-        protected Weapon(string name, int durability, Rarity rarity, float damage)
-            : base(name, durability, rarity)
-        {
-            Damage = damage > 0 ? damage : 1;
-        }
-
-    }
     class Bow : Weapon
     {
         private int _arrowcount = 5;
@@ -23,11 +13,17 @@ namespace ConsoleFight
         public Bow(string name, int durability, Rarity rarity, float damage)
     : base(name, durability, rarity, damage)
         {
+            Damage = damage;
         }
 
         public override void Break()
         {
             base.Break();
+        }
+
+        public override void status()
+        {
+            base.status();
         }
 
         public void ShootArrow()

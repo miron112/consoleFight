@@ -19,6 +19,7 @@ namespace ConsoleFight
         public string Name { get; set; }
         protected int _durability;
         public Rarity ItemRarity;
+        public bool IsBreak = false;
 
         protected Item(string name, int durability, Rarity rarity)
         {
@@ -28,12 +29,16 @@ namespace ConsoleFight
         }
         public virtual void Break()
         {
-            _durability--;
-            if ( _durability == 0 )
+            _durability --;
+            if ( _durability <= 0 )
             {
                 Console.WriteLine($"{Name} сломалась!");
-
+                IsBreak = true;
             }
+        }
+        public virtual void status()
+        {
+            Console.WriteLine(_durability);
         }
     }
 }

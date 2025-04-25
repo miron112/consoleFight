@@ -32,14 +32,23 @@ namespace ConsoleFight
         }
         public void Attack(Hero Enemu)
         {
-            int DeltaDamage = (int)Math.Max(0, this._weapon.Damage - (Enemu._armor.Defense / 2));
+            int DeltaDamage;
+            if (_weapon.IsBreak == true)
+            {
+                DeltaDamage = 0;
+            }
+            else
+            {
+                if (this._weapon is Bow bow)
+                {
+                    bow.ShootArrow();
+                }
+                this._weapon.Break();
+                DeltaDamage = (int)Math.Max(0, this._weapon.Damage - (Enemu._armor.Defense / 2));
+
+            }
 
             Enemu.TakeDamage(DeltaDamage);
-            if(this._weapon is Bow bow)
-            {
-                bow.ShootArrow();
-            }
-            this._weapon.Break();
         }
 
         public void TakeDamage(float Damage) 
@@ -87,6 +96,8 @@ namespace ConsoleFight
             Console.WriteLine($"Здоровье: {_health}");
             Console.WriteLine($"Оружие: {_weapon?.Name ?? "Нет"}");
             Console.WriteLine($"Броня: {_armor?.Name ?? "Нет"}");
+            Console.WriteLine($"прочность оружия ");
+            _weapon.status();
         }
 
     }

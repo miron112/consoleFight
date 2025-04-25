@@ -11,7 +11,7 @@ namespace ConsoleFight
             Hero org = new Hero("орк", health: 150);
 
             // Создаём оружие и броню
-            Bow crocodilo = new Bow("crocodilo bombordilo", 20, Rarity.Uncommon, 20 );
+            Bow crocodilo = new Bow("crocodilo bombordilo", 20, Rarity.Uncommon, 2 );
             Shield tralaleloTralala = new Shield("tralaleloTralala", 14, Rarity.Epic, 1, 0);
 
             // Экипируем героев
@@ -25,15 +25,16 @@ namespace ConsoleFight
             {
                 Console.WriteLine("-------------------");
                 warrior.ShowStatus();
+                Console.WriteLine("-------------------");            
                 org.ShowStatus();
                 Console.WriteLine("-------------------");
 
                 // Атака по очереди
                 warrior.Attack(org);
-                if (!org.IsAlive()) break;
+
 
                 org.Attack(warrior);
-                if (!warrior.IsAlive()) break;
+
 
                 Console.WriteLine("Нажмите Enter для следующего хода...");
                 Console.ReadLine();
